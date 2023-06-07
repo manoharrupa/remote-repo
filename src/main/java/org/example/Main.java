@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.calculator.Add;
+import org.example.calculator.Mul;
 import org.example.calculator.Sub;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -9,8 +10,11 @@ public class Main {
     public static void main(String[] args) {
         Add add = new Add();
         Sub sub = new Sub();
-        System.out.println(sub.subTwoNumber(9,4));
-        System.out.println(add.addTwoNumber(6,3));
+        Mul mul = new Mul();
+
+     System.out.println(add.addTwoNumber(2,3));
+     System.out.println(sub.subTwoNumber(9,4));
+     System.out.println(mul.mulTwoNumber(4,3));
 
         }
     }
