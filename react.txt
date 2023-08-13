@@ -1,0 +1,7 @@
+   client side component oriented 
+browsers
+mounting
+unmounting
+update
+create-react-app  -px - it is executed by node
+class attribute /used camel casing for avoid colliding 
