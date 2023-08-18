@@ -25,13 +25,14 @@ export class RegistrationComponent implements OnInit{
     firstName:['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],
     lastName: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],
     email:    ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, this.passwordValidator(),Validators.minLength(8)]],
     gender:   ['', Validators.required],
     dob:      ['', Validators.required],
     aadharNumber: ['',[Validators.required, Validators.pattern(/^\d{12}$/)]],
-    confirmPassword: ['', Validators.required],
     countryCode: ['', Validators.required],
-    mobileNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
+    mobileNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+    password: ['', [Validators.required, Validators.minLength(8),this.passwordValidator()]],
+    confirmPassword: ['', Validators.required],
+    
   })
 
   }
@@ -57,24 +58,20 @@ export class RegistrationComponent implements OnInit{
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
 
-      // Check for at least one uppercase letter
       if (!/[A-Z]/.test(value)) {
         return { uppercase: true };
       }
 
-      // Check for at least one lowercase letter
       if (!/[a-z]/.test(value)) {
         return { lowercase: true };
       }
 
-      // Check for at least one digit
       if (!/\d/.test(value)) {
         return { digit: true };
       }
-
-      // Check for at least one title case letter
-      if (!/\b\p{Lu}\p{Ll}*\b/u.test(value)) {
-        return { titlecase: true };
+      
+      if (!/[^a-zA-Z0-9]/.test(value)) {
+        return { specialcase: true };
       }
 
       return null;
